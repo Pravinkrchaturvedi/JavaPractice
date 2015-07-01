@@ -2,7 +2,8 @@ package com.ds.tree;
 
 public class Node {
 	
-	int number ;
+	int key ;
+	double data;
 	Node left ;
 	Node right ;
 }
