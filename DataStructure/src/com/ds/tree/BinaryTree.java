@@ -36,19 +36,19 @@ public class BinaryTree {
 			Node parent;
 			while (true) {
 				parent = currentRoot;
-				if (currentRoot.key < key) {
+				if (currentRoot.key <= key) {
 					currentRoot = currentRoot.right;
 					if (currentRoot == null) {
-						System.out.println("Not Found Node Containing Data :"
-								+ key);
+						System.out.println("data inserted right to  parent: "+parent.key +" "+insertnode.key
+								);
 						parent.right = insertnode;
 						return;
 					}
 				} else {
 					currentRoot = currentRoot.left;
 					if (currentRoot == null) {
-						System.out.println("Not Found Node Containing Data :"
-								+ key);
+						System.out.println("data inserted left to  parent: "+parent.key +" "+insertnode.key
+								);
 						parent.left = insertnode;
 						return;
 
@@ -87,6 +87,7 @@ public class BinaryTree {
 				return null;
 			}
 		}
+		System.out.println(currentRoot.key +" with data > " +currentRoot.data);
 		return currentRoot;
 
 	}
@@ -95,9 +96,54 @@ public class BinaryTree {
 	 * @param key
 	 * @return
 	 */
-	public int findHeight(int key) {
-
-		return 0;
+	public int findDepth(int key) {
+		Node Local = root ;
+		int depth  = 0;
+		while(Local.key != key){
+			if(Local.key < key) 
+				Local = Local.right ;
+			else Local = Local.left;
+			
+			if(Local == null) depth = 0;
+			else depth++;
+			
+		}
+		
+        System.out.println("depth of the Node "+ key +" > " + depth);
+		return depth;
 	}
 
+	
+	public Node findMinimumNode(){
+		
+		Node Current = root;
+		
+		Node minimum = null ;
+		
+		while(Current != null){
+			
+			minimum = Current ;
+			Current = Current.left;
+			
+		}
+		System.out.println("Node With Minimum value :" + minimum.key);
+		return minimum ;
+	}
+	
+	
+public Node findMaxNode(){
+		
+		Node Current = root;
+		
+		Node max = null ;
+		
+		while(Current != null){
+			
+			max = Current ;
+			Current = Current.right;
+			
+		}
+		System.out.println("Node With Max value :" + max.key);
+		return max ;
+	}
 }
